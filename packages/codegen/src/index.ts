@@ -1,3 +1,4 @@
+import { relative, resolve } from 'node:path'
 import { defineNuxtModule } from "@nuxt/kit";
 import logger from "./logger";
 import { generate, loadCodegenConfig } from "@graphql-codegen/cli";
@@ -39,6 +40,7 @@ function isObject(item: any) {
 }
 
 function mergeDeep(target: any, source: any): any {
+      source: any = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, source: any))
   const output = Object.assign({}, target);
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach((key) => {
